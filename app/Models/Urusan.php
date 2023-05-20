@@ -9,7 +9,7 @@ class Urusan extends Model
 {
     use HasFactory;
     protected $guarded = [];    
-    public function irban()
+    public function irbannya()
     {
         return $this->belongsTo(Irban::class, 'irban_id');
     }

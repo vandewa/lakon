@@ -21,17 +21,24 @@
     </li>
     
     @if (auth()->user()->hasRole('admin')) 
-    <li class = "{{ Request::segment(1) == 'user' ? 'mm-active' : '' }}">
+    <li class = "
+    {{ Request::segment(1) == 'user' ? 'mm-active' : '' }}
+    {{ Request::segment(1) == 'irban' ? 'mm-active' : '' }}
+    {{ Request::segment(1) == 'urusan' ? 'mm-active' : '' }}
+    ">
       <a href="javascript:;" class="has-arrow">
         <div class="parent-icon"><i class="lni lni-archive"></i>
         </div>
         <div class="menu-title">Master</div>
       </a>
       <ul>
-        <li class=" {{ Request::segment(1) == 'irban' ? 'mm-active' : '' }}"> 
+        <li class="{{ Request::segment(1) == 'irban' ? 'mm-active' : '' }}"> 
           <a href="{{ route ('irban.index')}}"><i class="bi bi-circle"></i>Irban</a>
         </li>
-        <li class=" {{ Request::segment(1) == 'user' ? 'mm-active' : '' }}"> 
+        <li class="{{ Request::segment(1) == 'urusan' ? 'mm-active' : '' }}"> 
+          <a href="{{ route ('urusan.index')}}"><i class="bi bi-circle"></i>Urusan</a>
+        </li>
+        <li class="{{ Request::segment(1) == 'user' ? 'mm-active' : '' }}"> 
           <a href="{{ route ('user.index')}}"><i class="bi bi-circle"></i>User</a>
         </li>
       </ul>
