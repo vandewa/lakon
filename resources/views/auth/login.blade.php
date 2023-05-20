@@ -15,7 +15,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Teko&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{{ asset('style.css') }}">
 </head>
-<body class="img js-fullheight" style="background-image:url({{ asset('bg1P.jpg') }});object-fit:cover">
+<body class="img js-fullheight" style="background-image:url({{ asset('bg1.jpg') }});object-fit:cover">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">

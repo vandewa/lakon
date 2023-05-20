@@ -55,7 +55,7 @@ class UrusanPage extends Component
             $data = Urusan::with('irbannya')->find($id);
             $this->nama = $data->nama;
             $this->irban_id = $data->irban_id;
-        }
+    }
 
         $this->idnya = $id;
         $this->listIrban = Irban::get();

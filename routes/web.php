@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KonsultasiController;
 use App\Http\Livewire\Pages\Irban\IrbanPage;
 use App\Http\Livewire\Pages\Irban\DaftarIrban;
 use App\Http\Livewire\Pages\Urusan\DaftarUrusan;
@@ -43,4 +44,5 @@ Route::middleware([
     Route::get('irban-index', DaftarIrban::class)->name('irban.index');
     Route::get('urusan/{id?}', UrusanPage::class)->name('urusan');
     Route::get('urusan-index', DaftarUrusan::class)->name('urusan.index');
+    Route::resource('konsultasi', KonsultasiController::class);
 });

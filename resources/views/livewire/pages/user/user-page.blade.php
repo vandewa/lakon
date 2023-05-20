@@ -31,7 +31,27 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <div class="col-12">
+                                            <label class="form-label">OPD</label>
+                                            <input type="text" class="form-control" wire:model.lazy="opd">
+                                            @error('opd')
+                                                <span class="form-text text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-12">
+                                            <label class="form-label">No HP</label>
+                                            <input type="text" class="form-control" wire:model.lazy="no_hp">
+                                            @error('no_hp')
+                                                <span class="form-text text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <div class="col-md-6">
                                         <div class="col-12">
                                             <label class="form-label">Role</label>
                                             <select name="" id="" class="form-control" wire:model.lazy="role_user">

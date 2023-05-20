@@ -36,6 +36,8 @@ class ListIrban extends DataTableComponent
                 ->sortable(),
             Column::make("Nama", "nama")
                 ->sortable(),
+            Column::make("Bidang", "bidang")
+                ->sortable(),
             Column::make('Action', 'id')
                 ->format(
                     function ($value, $row, Column $column) {

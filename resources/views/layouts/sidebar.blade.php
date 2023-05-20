@@ -19,6 +19,13 @@
         <div class="menu-title">Dashboard</div>
       </a>
     </li>
+    <li class="{{ Request::segment(1) == 'konsultasi' ? 'mm-active' : '' }}">
+      <a href="{{ route('konsultasi.index') }}">
+        <div class="parent-icon"><i class="bi bi-house-fill"></i>
+        </div>
+        <div class="menu-title">Konsultasi</div>
+      </a>
+    </li>
     
     @if (auth()->user()->hasRole('admin')) 
     <li class = "

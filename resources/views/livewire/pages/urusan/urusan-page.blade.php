@@ -6,7 +6,7 @@
                     <div class="card-body">
                         <div class="p-4 border rounded">
                             <div class="text-center">
-                                <h5 class="card-title">Irban</h5>
+                                <h5 class="card-title">Urusan</h5>
                             </div>
                             <hr>
                             <form  wire:submit.prevent="simpanData" method="POST">

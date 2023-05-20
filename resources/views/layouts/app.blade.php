@@ -38,6 +38,10 @@
 
   <!-- Scripts -->
 
+  <link href="{{ asset('snacked/ltr/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+
   @stack('css')
   @livewireStyles
 
@@ -248,6 +252,10 @@
   {{-- <script src="{{ asset('snacked/ltr/assets/js/index.js')}}"></script> --}}
 
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script src="{{ asset('snacked/ltr/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+  <script src="{{ asset('snacked/ltr/assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+  <script src="{{ asset('snacked/ltr/assets/js/table-datatable.js')}}"></script>
 
   {{-- Sweet Alert Delete Script --}}
   <script>

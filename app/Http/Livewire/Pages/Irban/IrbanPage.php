@@ -9,6 +9,7 @@ class IrbanPage extends Component
 {
     public $idnya;
     public $nama;
+    public $bidang;
 
     public function simpanData()
     {
@@ -17,10 +18,12 @@ class IrbanPage extends Component
         } else {
             $this->validate([
                 'nama' => 'required',
+                'bidang' => 'required',
             ]);
 
             Irban::create([
                 'nama' => $this->nama,
+                'bidang' => $this->bidang,
             ]);
 
             $this->dispatchBrowserEvent('Success');
@@ -32,11 +35,13 @@ class IrbanPage extends Component
     {
         $this->validate([
             'nama' => 'required',
+            'bidang' => 'required',
         ]);
 
         $irban = Irban::find($this->idnya);
         $irban->update([
             'nama' => $this->nama,
+            'bidang' => $this->bidang,
         ]);
 
         redirect()->to(route('irban.index'));
@@ -46,6 +51,8 @@ class IrbanPage extends Component
     {
         if ($id != "") {
             $data = Irban::find($id);
+            $this->nama = $data->nama;
+            $this->bidang = $data->bidang;
         }
 
         $this->idnya = $id;

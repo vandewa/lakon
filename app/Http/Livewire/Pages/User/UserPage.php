@@ -17,6 +17,8 @@ class UserPage extends Component
     public $role_user;
     public $password_confirmation;
     public $role;
+    public $no_hp;
+    public $opd;
 
     public function simpanData()
     {
@@ -34,6 +36,8 @@ class UserPage extends Component
             User::create([
                 'name' => $this->name,
                 'email' => $this->email,
+                'no_hp' => $this->no_hp,
+                'opd' => $this->opd,
                 'password' => Hash::make($this->password),
             ])->assignRole($this->role_user);
 
@@ -56,6 +60,8 @@ class UserPage extends Component
         $user->update([
             'name' => $this->name,
             'email' => $this->email,
+            'no_hp' => $this->no_hp,
+            'opd' => $this->opd,
         ]);
 
         DB::table('model_has_roles')->where('model_id', $this->idnya)->delete();
@@ -77,12 +83,13 @@ class UserPage extends Component
             $data = User::find($id);
             $this->name = $data->name;
             $this->email = $data->email;
+            $this->no_hp = $data->no_hp;
+            $this->opd = $data->opd;
             $this->role_user = $data->getRoleNames();
         }
 
         $this->role = Role::get();
         $this->idnya = $id;
-
     }
 
     public function render()

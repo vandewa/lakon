@@ -11,11 +11,20 @@
                             <hr>
                             <form  wire:submit.prevent="simpanData" method="POST">
                                 <div class="mb-3 row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="col-12">
                                             <label class="form-label">Nama</label>
                                             <input type="text" class="form-control" wire:model.lazy="nama">
                                             @error('nama')
+                                                <span class="form-text text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-12">
+                                            <label class="form-label">Bidang</label>
+                                            <input type="text" class="form-control" wire:model.lazy="bidang">
+                                            @error('bidang')
                                                 <span class="form-text text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
