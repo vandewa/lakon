@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('tiket_status', function (Blueprint $table) {
             $table->id();
+            $table->integer('tiket_id')->nullable();
+            $table->integer('creator_id')->nullable();
+            $table->longText('keterangan')->nullable();
+            $table->string('tiket_status_st')->nullable();
             $table->timestamps();
         });
     }

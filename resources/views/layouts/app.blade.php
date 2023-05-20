@@ -41,13 +41,16 @@
   <link href="{{ asset('snacked/ltr/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
+  <link href="{{ asset('snacked/ltr/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
+	<link href="{{ asset('snacked/ltr/assets/plugins/select2/css/select2-bootstrap4.css')}}" rel="stylesheet" />
+
 
   @stack('css')
   @livewireStyles
 
   @vite([])
 
-    <script src="https://cdn.plot.ly/plotly-2.20.0.min.js" charset="utf-8"></script>
+    {{-- <script src="https://cdn.plot.ly/plotly-2.20.0.min.js" charset="utf-8"></script> --}}
 
   <title>LAKON</title>
 </head>
@@ -252,6 +255,8 @@
   {{-- <script src="{{ asset('snacked/ltr/assets/js/index.js')}}"></script> --}}
 
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	{{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script> --}}
+
 
   <script src="{{ asset('snacked/ltr/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
   <script src="{{ asset('snacked/ltr/assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
@@ -309,15 +314,59 @@
       sweetAlert2();
   @endif
 </script>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
 <!-- Laravel Javascript Validation -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 {!! JsValidator::formRequest('App\Http\Requests\PasswordValidation','#my-forms') !!}
 
+<script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+
  @include('sweetalert::alert')
  @stack('js')
  @livewireScripts
+
+ <script>
+		$(document).on('click', '.delete-data-table', function (a) {
+			a.preventDefault();
+			Swal.fire({
+				title: 'Are you sure?',
+				text: "Do you realy want to delete this records? This process cannot be undone.",
+				type: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Delete!'
+			}).then((result) => {
+				if (result.value) {
+					a.preventDefault();
+					var url = $(this).attr('href');
+					$.ajaxSetup({
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+						}
+					});
+
+					$.ajax({
+						url: url,
+						method: 'delete',
+						success: function () {
+							Swal.fire(
+								'Dihapus!',
+								'Data berhasil di hapus.',
+								'success'
+							)
+							if (typeof table) {
+								$('#devan').DataTable().ajax.reload();	
+							}
+						}
+					})
+				}
+			})
+		});
+	</script>
+
 
 </body>
 

@@ -21,7 +21,7 @@
     </li>
     <li class="{{ Request::segment(1) == 'konsultasi' ? 'mm-active' : '' }}">
       <a href="{{ route('konsultasi.index') }}">
-        <div class="parent-icon"><i class="bi bi-house-fill"></i>
+        <div class="parent-icon"><i class="bx bx-message-square-dots"></i>
         </div>
         <div class="menu-title">Konsultasi</div>
       </a>

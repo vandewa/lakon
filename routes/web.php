@@ -45,4 +45,7 @@ Route::middleware([
     Route::get('urusan/{id?}', UrusanPage::class)->name('urusan');
     Route::get('urusan-index', DaftarUrusan::class)->name('urusan.index');
     Route::resource('konsultasi', KonsultasiController::class);
+    Route::post('/konsultasi/create/upload-image', [KonsultasiController::class, 'uploadImage'])->name('ckeditor.upload');
+    Route::get('konsultasi-urusan-irban', [KonsultasiController::class, 'urusanIrban'])->name('urusanIrban');
+
 });
