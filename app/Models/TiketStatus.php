@@ -14,5 +14,13 @@ class TiketStatus extends Model
     {
         return $this->belongsTo(Tiket::class, 'tiket_id');
     }
+    public function status()
+    {
+        return $this->belongsTo(ComCode::class, 'tiket_status_st');
+    }
+    public function nama()
+    {
+        return $this->belongsTo(User::class, 'creator_id');
+    }
 
 }

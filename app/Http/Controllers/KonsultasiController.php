@@ -18,25 +18,28 @@ class KonsultasiController extends Controller
      */
     public function index(Request $request)
     {
+
         if ($request->ajax()) {
             if (auth()->user()->hasRole('admin')) {
-                $data = Tiket::with(['status'])->select('*');
+                $data = Tiket::with(['status', 'tiketStatus'])->select('*');
             } elseif (auth()->user()->hasRole('irban')) {
                 if (auth()->user()->email == 'irban1@wonosobokab.go.id') {
-                    $data = Tiket::with(['status'])->where('irban_id', 1)->select('*');
+                    $data = Tiket::with(['status', 'tiketStatus'])->where('irban_id', 1)->where('tiket_st', 'TIKET_ST_02')->select('*');
                 } elseif (auth()->user()->email == 'irban2@wonosobokab.go.id') {
-                    $data = Tiket::with(['status'])->where('irban_id', 2)->select('*');
+                    $data = Tiket::with(['status', 'tiketStatus'])->where('irban_id', 2)->where('tiket_st', 'TIKET_ST_02')->select('*');
                 } elseif (auth()->user()->email == 'irban3@wonosobokab.go.id') {
-                    $data = Tiket::with(['status'])->where('irban_id', 3)->select('*');
+                    $data = Tiket::with(['status', 'tiketStatus'])->where('irban_id', 3)->where('tiket_st', 'TIKET_ST_02')->select('*');
                 } elseif (auth()->user()->email == 'irban4@wonosobokab.go.id') {
-                    $data = Tiket::with(['status'])->where('irban_id', 4)->select('*');
+                    $data = Tiket::with(['status', 'tiketStatus'])->where('irban_id', 4)->where('tiket_st', 'TIKET_ST_02')->select('*');
                 } elseif (auth()->user()->email == 'irban5@wonosobokab.go.id') {
-                    $data = Tiket::with(['status'])->where('irban_id', 5)->select('*');
+                    $data = Tiket::with(['status', 'tiketStatus'])->where('irban_id', 5)->where('tiket_st', 'TIKET_ST_02')->select('*');
                 }
             } elseif (auth()->user()->hasRole('sekretaris')) {
-                $data = Tiket::with(['status'])->where('tiket_st', 'TIKET_ST_03')->select('*');
+                $data = Tiket::with(['status', 'tiketStatus'])->where('tiket_st', 'TIKET_ST_03')->select('*');
+            } elseif (auth()->user()->hasRole('inspektur')) {
+                $data = Tiket::with(['status', 'tiketStatus'])->where('tiket_st', 'TIKET_ST_04')->select('*');
             } else {
-                $data = Tiket::with(['status'])->where('creator_id', auth()->user()->id)->select('*');
+                $data = Tiket::with(['status', 'tiketStatus'])->where('creator_id', auth()->user()->id)->select('*');
             }
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -62,29 +65,81 @@ class KonsultasiController extends Controller
                     </div>  
                     ';
 
+                    $editDanLog = '
+                    <div class="gap-3 table-actions d-flex align-items-center fs-6">
+                    <a href="' . route('konsultasi.edit', $row->id) . '" class="text-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit" type="button"><i class="bi bi-pencil-fill"></i>
+                    </a>
+                    <a href="' . route('log', $row->id) . '" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Log" type="button"><i class="bx bx-book-open fill"></i>
+                    </a>
+                    </div>  
+                    ';
+
+                    $previewDanLog = '
+                    <div class="gap-3 table-actions d-flex align-items-center fs-6">
+                    <a href="' . route('konsultasi.show', $row->id) . '" class="text-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Preview" type="button"><i class="bi bi-eye-fill"></i>
+                    </a>
+                    <a href="' . route('log', $row->id) . '" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Log" type="button"><i class="bx bx-book-open fill"></i>
+                    </a>
+                    </div>  
+                    ';
+
 
                     if (auth()->user()->hasRole('opd')) {
-                        if ($row->tiket_st != 'TIKET_ST_01') {
-                            return;
-                        } else {
+                        if ($row->tiket_st == 'TIKET_ST_01') {
                             return $editDanDelete;
+                        } elseif ($row->tiket_st == 'TIKET_ST_05') {
+                            return $previewDanLog;
+                        } else {
+                            return;
                         }
                     } elseif (auth()->user()->hasRole('admin')) {
                         if ($row->tiket_st == 'TIKET_ST_01' || $row->tiket_st == 'TIKET_ST_02') {
                             return $edit;
+                        } elseif ($row->tiket_st == 'TIKET_ST_05') {
+                            return $previewDanLog;
                         } else {
                             return;
                         }
                     } elseif (auth()->user()->hasRole('irban')) {
                         if ($row->tiket_st == 'TIKET_ST_02') {
-                            return $edit;
+                            if ($row->hasTiketStatus()) {
+                                return $editDanLog;
+                            } else {
+                                return $edit;
+                            }
+                        } elseif ($row->tiket_st == 'TIKET_ST_05') {
+                            return $previewDanLog;
+                        } else {
+                            return;
+                        }
+                    } elseif (auth()->user()->hasRole('sekretaris')) {
+                        if ($row->tiket_st == 'TIKET_ST_03') {
+                            if ($row->hasTiketStatus()) {
+                                return $editDanLog;
+
+                            } else {
+                                return $edit;
+                            }
+                        } elseif ($row->tiket_st == 'TIKET_ST_05') {
+                            return $previewDanLog;
+                        } else {
+                            return;
+                        }
+                    } elseif (auth()->user()->hasRole('inspektur')) {
+                        if ($row->tiket_st == 'TIKET_ST_04') {
+                            if ($row->hasTiketStatus()) {
+                                return $editDanLog;
+                            } else {
+                                return $edit;
+                            }
+                        } elseif ($row->tiket_st == 'TIKET_ST_05') {
+                            return $previewDanLog;
                         } else {
                             return;
                         }
                     } else {
                         return $editDanDelete;
                     }
-
 
                 })
                 ->addColumn('status', function ($row) {
@@ -152,7 +207,12 @@ class KonsultasiController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = Tiket::find($id);
+        $irban = Irban::pluck('nama', 'id');
+        $urusan = TiketUrusan::with(['urusan'])->where('tiket_id', $id)->get()->pluck('urusan.id');
+        $listUrusan = Urusan::where('irban_id', $data->irban_id)->get()->pluck('nama', 'id');
+
+        return view('konsultasi.show', compact('data', 'irban', 'urusan', 'listUrusan'));
     }
 
     /**
@@ -241,14 +301,45 @@ class KonsultasiController extends Controller
             ]);
         }
 
-        //sekdin
-        if ($request->tiket_status_st || $request->keterangan) {
+        //sekdin 
+        if ($request->tiket_status_st && auth()->user()->hasRole('sekretaris')) {
             TiketStatus::create([
                 'tiket_id' => $id,
                 'creator_id' => auth()->user()->id,
                 'keterangan' => $request->keterangan,
                 'tiket_status_st' => $request->tiket_status_st,
             ]);
+
+            if ($request->tiket_status_st == 'TIKET_STATUS_ST_01') {
+                Tiket::find($id)->update([
+                    'tiket_st' => 'TIKET_ST_04',
+                ]);
+            } elseif ($request->tiket_status_st == 'TIKET_STATUS_ST_02') {
+                Tiket::find($id)->update([
+                    'tiket_st' => 'TIKET_ST_02',
+                ]);
+            }
+        }
+
+        //inspektur 
+        if ($request->tiket_status_st && auth()->user()->hasRole('inspektur')) {
+            TiketStatus::create([
+                'tiket_id' => $id,
+                'creator_id' => auth()->user()->id,
+                'keterangan' => $request->keterangan,
+                'tiket_status_st' => $request->tiket_status_st,
+            ]);
+
+            if ($request->tiket_status_st == 'TIKET_STATUS_ST_01') {
+                Tiket::find($id)->update([
+                    'tiket_st' => 'TIKET_ST_05',
+                ]);
+            } elseif ($request->tiket_status_st == 'TIKET_STATUS_ST_02') {
+                Tiket::find($id)->update([
+                    'tiket_st' => 'TIKET_ST_03',
+                ]);
+            }
+
         }
 
         return redirect(route('konsultasi.index'));
@@ -285,5 +376,12 @@ class KonsultasiController extends Controller
     {
         $state = Urusan::where('irban_id', $request->country_id)->pluck('nama', 'id');
         return response()->json($state);
+    }
+
+    public function log($id)
+    {
+        $data = TiketStatus::with(['nama', 'status'])->where('tiket_id', $id)->orderBy('id', 'desc')->get();
+
+        return view('konsultasi.log', compact('data'));
     }
 }

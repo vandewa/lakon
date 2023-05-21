@@ -47,5 +47,7 @@ Route::middleware([
     Route::resource('konsultasi', KonsultasiController::class);
     Route::post('/konsultasi/create/upload-image', [KonsultasiController::class, 'uploadImage'])->name('ckeditor.upload');
     Route::get('konsultasi-urusan-irban', [KonsultasiController::class, 'urusanIrban'])->name('urusanIrban');
+    Route::get('/log-konsultasi/{id}', [KonsultasiController::class, 'log'])->name('log');
+
 
 });

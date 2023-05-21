@@ -60,25 +60,24 @@
             <label class="form-label">Lampiran</label>
             <img id="preview-image-before-upload" src="{{ asset('not-found.jpg') }}"
                 alt="preview image" style="max-height: 250px;">
-            <input name="path_file_jawaban" type="file" accept="application/pdf" class="form-control">
-            @error('path_file_jawaban')
-            <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
+            
         @else
             <label class="form-label">Lampiran</label>
             <object data="{{ asset($data->preview_image) }}" type="application/pdf" width="100%" height="500"
                 style="border: solid 1px #ccc;"></object>
-                <label class="form-label">Ganti Lampiran</label>
-            <input name="path_file_jawaban" type="file" accept="application/pdf" class="form-control">
-            @error('path_file_jawaban')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
         @endif
         
     </div>
+
+    <div class="row">
+        <label class="col-sm-3 col-form-label"></label>
+        <div class="col-sm-12 text-end">
+            <a href="{{ url()->previous() }}" class="px-5 btn btn-secondary">Kembali</a>
+        </div>
+    </div>
+
 </div>
 
-@include('action')
 
 @push('css')
     <style>

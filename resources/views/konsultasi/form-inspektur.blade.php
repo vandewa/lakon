@@ -52,29 +52,34 @@
     <div class="col-md-6">
         <div class="col-12">
             <label class="form-label">Jawaban</label>
-            {{Form::textarea('jawaban', null, ['id' => 'editor2'])}}
+            {{Form::textarea('jawaban', null, ['id' => 'editor2', 'disabled' => 'disabled'])}}
         </div>
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
         @if ($data->path_file_jawaban == null)
             <label class="form-label">Lampiran</label>
             <img id="preview-image-before-upload" src="{{ asset('not-found.jpg') }}"
                 alt="preview image" style="max-height: 250px;">
-            <input name="path_file_jawaban" type="file" accept="application/pdf" class="form-control">
-            @error('path_file_jawaban')
-            <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
         @else
             <label class="form-label">Lampiran</label>
-            <object data="{{ asset($data->preview_image) }}" type="application/pdf" width="100%" height="500"
+            <object data="{{ asset($data->preview_jawaban) }}" type="application/pdf" width="100%" height="500"
                 style="border: solid 1px #ccc;"></object>
-                <label class="form-label">Ganti Lampiran</label>
-            <input name="path_file_jawaban" type="file" accept="application/pdf" class="form-control">
-            @error('path_file_jawaban')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
         @endif
-        
+    </div>
+</div>
+
+<div class="mb-3 row">
+    <div class="col-md-6">
+        <div class="col-12">
+            <label class="form-label">Pilih Status</label>
+            {{Form::select('tiket_status_st' ,get_code_group('TIKET_STATUS_ST'), null, ['class' => 'form-control ','placeholder' => '- Pilih -','required'])}}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="col-12">
+            <label class="form-label">Keterangan</label>
+            {{Form::textarea('keterangan' , null, ['class' => 'form-control ', 'rows' => 2])}}
+        </div>
     </div>
 </div>
 
@@ -112,6 +117,7 @@
             }
         } )
         .then(editor => {
+            editor.enableReadOnlyMode("editor2");
             console.log(editor);
         })
         .catch( error => {

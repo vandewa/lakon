@@ -32,6 +32,7 @@
                                 <th>Subject(Judul)</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
+                                <th style="display: none;"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,9 +49,9 @@
         var table = $('#devan').DataTable({
             processing: true,
             serverSide: true,
-            // "order": [
-            //     [8, "desc"]
-            // ],
+            "order": [
+                [5, "desc"]
+            ],
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
@@ -74,6 +75,10 @@
                     name: 'action',
                     orderable: false,
                     searchable: false
+                },
+                {
+                    data: 'created_at',
+                    visible: false
                 },
 
             ]

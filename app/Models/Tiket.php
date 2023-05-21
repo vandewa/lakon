@@ -17,6 +17,10 @@ class Tiket extends Model
     {
         return $this->belongsTo(ComCode::class, 'tiket_st');
     }
+    public function tiketStatus()
+    {
+        return $this->hasMany(TiketStatus::class, 'tiket_id');
+    }
 
     public function getPreviewImageAttribute()
     {
@@ -27,6 +31,11 @@ class Tiket extends Model
     {
         $devan = asset(str_replace('public', 'storage', $this->attributes['path_file_jawaban']));
         return $devan;
+    }
+
+    public function hasTiketStatus()
+    {
+        return (bool) $this->tiketStatus()->first();
     }
 
 }

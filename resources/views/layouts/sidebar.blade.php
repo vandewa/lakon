@@ -19,7 +19,10 @@
         <div class="menu-title">Dashboard</div>
       </a>
     </li>
-    <li class="{{ Request::segment(1) == 'konsultasi' ? 'mm-active' : '' }}">
+    <li class="
+    {{ Request::segment(1) == 'konsultasi' ? 'mm-active' : '' }}
+    {{ Request::segment(1) == 'log-konsultasi' ? 'mm-active' : '' }}
+    ">
       <a href="{{ route('konsultasi.index') }}">
         <div class="parent-icon"><i class="bx bx-message-square-dots"></i>
         </div>
@@ -32,6 +35,7 @@
     {{ Request::segment(1) == 'user' ? 'mm-active' : '' }}
     {{ Request::segment(1) == 'irban' ? 'mm-active' : '' }}
     {{ Request::segment(1) == 'urusan' ? 'mm-active' : '' }}
+    
     ">
       <a href="javascript:;" class="has-arrow">
         <div class="parent-icon"><i class="lni lni-archive"></i>

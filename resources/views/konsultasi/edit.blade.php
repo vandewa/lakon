@@ -2,7 +2,7 @@
 @section('content')
 <main class="page-content">
     <div class="row">
-        @if(auth()->user()->hasRole('irban') || auth()->user()->hasRole('sekretaris')) 
+        @if(auth()->user()->hasRole(['irban', 'sekretaris', 'inspektur'])) 
         <div class="col-xl-12 mx-auto">
         @else
         <div class="col-xl-6 mx-auto">
@@ -21,6 +21,8 @@
                             @include('konsultasi.form-irban')
                         @elseif(auth()->user()->hasRole('sekretaris')) 
                             @include('konsultasi.form-sekretaris')
+                        @elseif(auth()->user()->hasRole('inspektur')) 
+                            @include('konsultasi.form-inspektur')
                         @endif
                         {{Form::close()}}
                     </div>
