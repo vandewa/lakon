@@ -366,6 +366,35 @@
 			})
 		});
 	</script>
+  <script type="text/javascript">
+		function sweetAlert() 
+		{  
+			Swal.fire(
+			'Berhasil!',
+			'Menambahkan data.',
+			'success'
+			)
+		}
+	
+		@if(session('store'))
+		sweetAlert();
+		@endif
+	
+	</script>
+	<script type="text/javascript">
+		function sweetAlert2() 
+		{  
+			Swal.fire(
+			'Berhasil!',
+			'Mengedit data.',
+			'success'
+			)
+		}
+	
+		@if(session('edit'))
+		sweetAlert2();
+		@endif
+	</script>
 
 
 </body>

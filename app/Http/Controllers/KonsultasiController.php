@@ -199,7 +199,7 @@ class KonsultasiController extends Controller
             'path_file_pertanyaan' => $path,
         ]);
 
-        return redirect(route('konsultasi.index'));
+        return redirect(route('konsultasi.index'))->with('store', 'oke');
     }
 
     /**
@@ -342,7 +342,7 @@ class KonsultasiController extends Controller
 
         }
 
-        return redirect(route('konsultasi.index'));
+        return redirect(route('konsultasi.index'))->with('edit', 'oke');
 
     }
 

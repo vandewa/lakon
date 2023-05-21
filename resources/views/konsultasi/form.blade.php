@@ -28,7 +28,7 @@
         <div class="col-12">
             @if ($data->path_file_pertanyaan == null)
                 <label class="form-label">Lampiran</label>
-                <img id="preview-image-before-upload" src="{{ asset('dashtrans/vertical/assets/images/not-found.jpg') }}"
+                <img id="preview-image-before-upload" src="{{ asset('not-found.jpg') }}"
                     alt="preview image" style="max-height: 250px;">
             @else
                 <label class="form-label">Lampiran</label>
