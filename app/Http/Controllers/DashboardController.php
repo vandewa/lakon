@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ComCode;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Tiket;
+use DB;
 
 
 class DashboardController extends Controller
@@ -15,7 +18,14 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        return view('dashboard.index');
+        $data['tiket'] = DB::table('com_codes')->leftJoin('tikets', 'tikets.tiket_st', 'com_codes.code_cd')
+        ->select(DB::raw("code_nm as nama, count(tiket_st) as jumlah"))->where('code_group', 'tiket_st')
+        ->groupBy('code_nm')->get();
+        $data['total'] = Tiket::count();
+
+
+        // return $data;
+        return view('dashboard.index', compact('data'));
     }
 
     /**
