@@ -25,6 +25,7 @@ use App\Http\Livewire\Pages\User\DaftarUser;
 Route::get('/', function () {
     return view('lakon');
 });
+
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
@@ -51,6 +52,4 @@ Route::middleware([
     Route::post('/konsultasi/create/upload-image', [KonsultasiController::class, 'uploadImage'])->name('ckeditor.upload');
     Route::get('konsultasi-urusan-irban', [KonsultasiController::class, 'urusanIrban'])->name('urusanIrban');
     Route::get('/log-konsultasi/{id}', [KonsultasiController::class, 'log'])->name('log');
-
-
 });

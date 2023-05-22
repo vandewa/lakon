@@ -116,7 +116,6 @@ class KonsultasiController extends Controller
                         if ($row->tiket_st == 'TIKET_ST_03') {
                             if ($row->hasTiketStatus()) {
                                 return $editDanLog;
-
                             } else {
                                 return $edit;
                             }
@@ -140,7 +139,6 @@ class KonsultasiController extends Controller
                     } else {
                         return $editDanDelete;
                     }
-
                 })
                 ->addColumn('status', function ($row) {
                     if ($row->tiket_st == 'TIKET_ST_01') {
@@ -156,7 +154,7 @@ class KonsultasiController extends Controller
                     }
                 })
                 ->addColumn('keterangannya', function ($row) {
-                    return $row->keteranganReview->keterangan??"-";
+                    return $row->keteranganReview->keterangan ?? "-";
                 })
                 ->rawColumns(['action', 'status'])
                 ->make(true);
@@ -188,7 +186,6 @@ class KonsultasiController extends Controller
                 'public',
                 $filename
             );
-
         } else {
             $path = null;
         }
@@ -247,7 +244,6 @@ class KonsultasiController extends Controller
                 'public',
                 $filename
             );
-
         } else {
             $path = Tiket::where('id', $id)->first()->path_file_pertanyaan;
         }
@@ -289,7 +285,6 @@ class KonsultasiController extends Controller
                 'public',
                 $filename
             );
-
         } else {
             $path_jawaban = Tiket::where('id', $id)->first()->path_file_jawaban;
         }
@@ -342,11 +337,9 @@ class KonsultasiController extends Controller
                     'tiket_st' => 'TIKET_ST_03',
                 ]);
             }
-
         }
 
         return redirect(route('konsultasi.index'))->with('edit', 'oke');
-
     }
 
     /**
