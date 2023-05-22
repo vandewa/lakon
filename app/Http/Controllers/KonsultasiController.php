@@ -78,7 +78,7 @@ class KonsultasiController extends Controller
                     <div class="gap-3 table-actions d-flex align-items-center fs-6">
                     <a href="' . route('konsultasi.show', $row->id) . '" class="text-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Preview" type="button"><i class="bi bi-eye-fill"></i>
                     </a>
-                    <a href="' . route('log', $row->id) . '" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Log" type="button"><i class="bx bx-book-open fill"></i>
+                    <a href="' . route('log', $row->id) . '" class="text-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Log" type="button"><i class="bx bx-book-open fill"></i>
                     </a>
                     </div>  
                     ';

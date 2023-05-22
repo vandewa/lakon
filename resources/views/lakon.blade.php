@@ -74,7 +74,7 @@
     <div class="container" style="color:black">
       <img src="{{ asset('img/lakon/Lambang Wonosobo.png')}}" class="pt-4 mx-auto mb-3 bg-transparent crop images" width="100" height="135" />
       <h4 class="display-6">Selamat Datang,</h4>
-      <h3 class="display-2"><b>Layanan Konsultasi</b></h3>
+      <h3 class="display-2"><b>Layanan Konsultasi Online</b></h3>
       <h6 class="display-6"><b>Inspektorat Kabupaten Wonosobo</b></h6>
       <p class="card-text"><br>Melalui Sistem Layanan Konsultasi <b>(LAKON)</b>, mari bersama-sama kita<br>tingkatkan Transparansi, Akuntabilitas, dan Kualitas Pelayanan Publik<br>di lingkungan Pemerintah Kabupaten Wonosobo.</p>
       <a href="{{ route('login')}}" class="mt-3 btn btn-danger btn-md" title="Klik untuk mengajukan pertanyaan!">Ajukan Konsultasi <i class="fa fa-sign-in" aria-hidden="true"></i></a>
