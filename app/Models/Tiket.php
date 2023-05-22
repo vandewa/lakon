@@ -33,6 +33,11 @@ class Tiket extends Model
         return $devan;
     }
 
+    public function keteranganReview()
+    {
+        return $this->hasOne(TiketStatus::class, 'tiket_id')->latest();
+    }
+
     public function hasTiketStatus()
     {
         return (bool) $this->tiketStatus()->first();

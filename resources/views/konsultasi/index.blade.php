@@ -31,6 +31,7 @@
                                 <th>Kode Tiket</th>
                                 <th>Subject(Judul)</th>
                                 <th>Status</th>
+                                <th>Keterangan</th>
                                 <th>Aksi</th>
                                 <th style="display: none;"></th>
                             </tr>
@@ -69,6 +70,9 @@
                     data: 'status',
                     orderable: false,
                     searchable: false,
+                },
+                {
+                    data: 'keterangannya',
                 },
                 {
                     data: 'action',

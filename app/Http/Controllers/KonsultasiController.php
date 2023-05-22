@@ -21,25 +21,25 @@ class KonsultasiController extends Controller
 
         if ($request->ajax()) {
             if (auth()->user()->hasRole('admin')) {
-                $data = Tiket::with(['status', 'tiketStatus'])->select('*');
+                $data = Tiket::with(['status', 'tiketStatus', 'keteranganReview'])->select('*');
             } elseif (auth()->user()->hasRole('irban')) {
                 if (auth()->user()->email == 'irban1@wonosobokab.go.id') {
-                    $data = Tiket::with(['status', 'tiketStatus'])->where('irban_id', 1)->where('tiket_st', 'TIKET_ST_02')->select('*');
+                    $data = Tiket::with(['status', 'tiketStatus', 'keteranganReview'])->where('irban_id', 1)->select('*');
                 } elseif (auth()->user()->email == 'irban2@wonosobokab.go.id') {
-                    $data = Tiket::with(['status', 'tiketStatus'])->where('irban_id', 2)->where('tiket_st', 'TIKET_ST_02')->select('*');
+                    $data = Tiket::with(['status', 'tiketStatus', 'keteranganReview'])->where('irban_id', 2)->select('*');
                 } elseif (auth()->user()->email == 'irban3@wonosobokab.go.id') {
-                    $data = Tiket::with(['status', 'tiketStatus'])->where('irban_id', 3)->where('tiket_st', 'TIKET_ST_02')->select('*');
+                    $data = Tiket::with(['status', 'tiketStatus', 'keteranganReview'])->where('irban_id', 3)->select('*');
                 } elseif (auth()->user()->email == 'irban4@wonosobokab.go.id') {
-                    $data = Tiket::with(['status', 'tiketStatus'])->where('irban_id', 4)->where('tiket_st', 'TIKET_ST_02')->select('*');
+                    $data = Tiket::with(['status', 'tiketStatus', 'keteranganReview'])->where('irban_id', 4)->select('*');
                 } elseif (auth()->user()->email == 'irban5@wonosobokab.go.id') {
-                    $data = Tiket::with(['status', 'tiketStatus'])->where('irban_id', 5)->where('tiket_st', 'TIKET_ST_02')->select('*');
+                    $data = Tiket::with(['status', 'tiketStatus', 'keteranganReview'])->where('irban_id', 5)->select('*');
                 }
             } elseif (auth()->user()->hasRole('sekretaris')) {
-                $data = Tiket::with(['status', 'tiketStatus'])->where('tiket_st', 'TIKET_ST_03')->select('*');
+                $data = Tiket::with(['status', 'tiketStatus', 'keteranganReview'])->select('*');
             } elseif (auth()->user()->hasRole('inspektur')) {
-                $data = Tiket::with(['status', 'tiketStatus'])->where('tiket_st', 'TIKET_ST_04')->select('*');
+                $data = Tiket::with(['status', 'tiketStatus', 'keteranganReview'])->select('*');
             } else {
-                $data = Tiket::with(['status', 'tiketStatus'])->where('creator_id', auth()->user()->id)->select('*');
+                $data = Tiket::with(['status', 'tiketStatus', 'keteranganReview'])->where('creator_id', auth()->user()->id)->select('*');
             }
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -154,6 +154,9 @@ class KonsultasiController extends Controller
                     } elseif ($row->tiket_st == 'TIKET_ST_05') {
                         return '<span class="badge bg-success">' . $row->status->code_nm . '</span>';
                     }
+                })
+                ->addColumn('keterangannya', function ($row) {
+                    return $row->keteranganReview->keterangan??"-";
                 })
                 ->rawColumns(['action', 'status'])
                 ->make(true);

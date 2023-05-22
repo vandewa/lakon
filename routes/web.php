@@ -23,8 +23,11 @@ use App\Http\Livewire\Pages\User\DaftarUser;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('lakon');
 });
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
 
 Route::get('docs', function () {
     return File::get(public_path() . '/documentation.html');
