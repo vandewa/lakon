@@ -17,9 +17,9 @@
 <div class="mb-3 row">
     <div class="col-md-12">
         @if(Request::segment(2) == 'create')
-        <div class="col-12 mb-2">
+        <div class="mb-2 col-12">
             <label class="form-label">Lampiran</label>
-            <input name="path_file_pertanyaan" type="file" accept="application/pdf" required class="form-control">
+            <input name="path_file_pertanyaan" type="file" accept="application/pdf" class="form-control">
             @error('path_file_pertanyaan')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
