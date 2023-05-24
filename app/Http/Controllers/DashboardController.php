@@ -18,13 +18,18 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        $data['tiket'] = DB::table('com_codes')->leftJoin('tikets', 'tikets.tiket_st', 'com_codes.code_cd')
-        ->select(DB::raw("code_nm as nama, count(tiket_st) as jumlah"))->where('code_group', 'tiket_st')
-        ->groupBy('code_nm')->get();
+        $data['tiket'] = DB::table('com_codes')
+            ->leftJoin('tikets', 'tikets.tiket_st', 'com_codes.code_cd')
+            ->select(DB::raw("code_nm as nama, count(tiket_st) as jumlah"))
+            ->where('code_group', 'tiket_st')
+            ->groupBy('code_nm')->get();
+
         $data['total'] = Tiket::count();
 
+        $data['icon'] = ['bx-envelope-open', 'bx-user', 'bx-user-pin', 'bx-user-circle', 'bx-envelope'];
 
-        // return $data;
+        $data['bg'] = ['danger', 'dark', 'dark', 'dark', 'success'];
+
         return view('dashboard.index', compact('data'));
     }
 
