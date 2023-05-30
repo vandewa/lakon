@@ -10,6 +10,7 @@ use App\Http\Livewire\Pages\Urusan\DaftarUrusan;
 use App\Http\Livewire\Pages\Urusan\UrusanPage;
 use App\Http\Livewire\Pages\User\UserPage;
 use App\Http\Livewire\Pages\User\DaftarUser;
+use App\Http\Livewire\Pages\Laporan\LaporanKonsultasi;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,4 +53,5 @@ Route::middleware([
     Route::post('/konsultasi/create/upload-image', [KonsultasiController::class, 'uploadImage'])->name('ckeditor.upload');
     Route::get('konsultasi-urusan-irban', [KonsultasiController::class, 'urusanIrban'])->name('urusanIrban');
     Route::get('/log-konsultasi/{id}', [KonsultasiController::class, 'log'])->name('log');
+    Route::get('laporan/konsultasi', LaporanKonsultasi::class)->name('laporan.konsultasi');
 });

@@ -9,6 +9,12 @@ class Tiket extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function penanya()
+    {
+        return $this->belongsTo(User::class, 'creator_id');
+    }
+
     public function irban()
     {
         return $this->belongsTo(Irban::class, 'irban_id');

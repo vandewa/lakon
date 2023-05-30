@@ -57,6 +57,24 @@
                 </ul>
             </li>
         @endif
+        @if (auth()->user()->hasRole('admin'))
+            <li
+                class="
+    {{ Request::segment(1) == 'laporan' ? 'mm-active' : '' }}
+    ">
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class="lni lni-archive"></i>
+                    </div>
+                    <div class="menu-title">Laporan</div>
+                </a>
+                <ul>
+                    <li class="{{ Request::segment(1) == 'irban' ? 'mm-active' : '' }}">
+                        <a href="{{ route('laporan.konsultasi') }}"><i class="bi bi-circle"></i>Konsultasi</a>
+                    </li>
+                    
+                </ul>
+            </li>
+        @endif
 
     </ul>
     <!--end navigation-->
