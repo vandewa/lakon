@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <select name="" id="" class="form-control" wire:model="pilihStatus">
+                        <select name=""  class="form-control" wire:model="pilihStatus">
                             <option value="">Pilih Status</option>
                             @foreach ($status as $item)
                                 <option value={{ $item->code_cd }}> {{ $item->code_nm }}</option>
@@ -38,12 +38,13 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <select name="" id="" class="form-control" wire:model="pilihOpd">
+                        <select class="form-control" wire:model="pilihOpd">
                             <option value="">Pilih OPD</option>
-                            @foreach ($listOpd as $a)
-                                <option value={{ $a->opd }}> {{ $a->opd }}</option>
-                            @endforeach
+                            @foreach ($listUrusan??[] as $item)
+                            <option value={{ $item->id }}> {{ $item->nama }}</option>
+                        @endforeach
                         </select>
+                        {{ $listOpdTai??[] }}
                     </div>
                 </div>
                 <div class="col-md-4 row mb-3">
@@ -53,10 +54,10 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <select name="" id="" class="form-control">
+                        <select name=""  class="form-control" wire:model="pilihUrusan">
                             <option value="">Pilih Status</option>
-                            @foreach ($status as $item)
-                                <option value={{ $item->code_cd }}> {{ $item->code_nm }}</option>
+                            @foreach ($listUrusan??[] as $item)
+                                <option value={{ $item->id }}> {{ $item->nama }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -85,7 +86,7 @@
                 
             </div>
             <div class="float-end">
-                <button class="btn btn-primary">Export Excel</button>
+                <button class="btn btn-primary" wire:click="export">Export Excel</button>
             </div>
             
         </div>
@@ -103,6 +104,7 @@
                 <td>Kode Tiket</td>
                 <td>Tanggal Masuk</td>
                 <td>Subject</td>
+                <td>Status</td>
                 <td>Pertanyaan</td>
                 <td>Penanya</td>
                 <td>Jawaban</td>
@@ -114,6 +116,7 @@
                         <td> {{ $item->kode_tiket }} </td>
                         <td>{{ $item->created_at }}</td>
                         <td> {{ $item->subject }} </td>
+                        <td> {{ $item->status->code_nm??"" }} </td>
                         <td> {!! $item->pertanyaan !!} </td>
                         <td> {{ $item->penanya->opd??"-" }}</td>
                         <td>{!! $item->jawaban !!}</td>
