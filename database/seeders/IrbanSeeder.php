@@ -14,7 +14,7 @@ class IrbanSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('com_codes')->truncate();
+        DB::table('irbans')->truncate();
         $data = [
             [
                 "id" => "1",

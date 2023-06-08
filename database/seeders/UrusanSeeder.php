@@ -14,7 +14,7 @@ class UrusanSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('com_codes')->truncate();
+        DB::table('urusans')->truncate();
         $data = [
             [
                 "id" => "1",
