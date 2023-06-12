@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Tiket extends Model
 {
@@ -47,6 +48,11 @@ class Tiket extends Model
     public function hasTiketStatus()
     {
         return (bool) $this->tiketStatus()->first();
+    }
+
+    public function urusan()
+    {
+        return $this->belongsToMany(Urusan::class, 'tiket_urusans', 'tiket_id', 'urusan_id');
     }
 
 }

@@ -245,7 +245,7 @@
   <script src="{{ asset('snacked/ltr/assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js')}}"></script>
   <script src="{{ asset('snacked/ltr/assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
   <script src="{{ asset('snacked/ltr/assets/plugins/select2/js/select2.min.js')}}"></script>
-  <script src="{{ asset('snacked/ltr/assets/js/form-select2.js')}}"></script>
+  {{-- <script src="{{ asset('snacked/ltr/assets/js/form-select2.js')}}"></script> --}}
   {{-- <script src="{{ asset('snacked/ltr/assets/plugins/apexcharts-bundle/js/apexcharts.min.js')}}"></script> --}}
 
 	

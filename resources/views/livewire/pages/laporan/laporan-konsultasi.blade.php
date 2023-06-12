@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <select name=""  class="form-control" wire:model="pilihStatus">
+                        <select name="" wire:ignore  class="form-control" wire:model="pilihStatus">
                             <option value="">Pilih Status</option>
                             @foreach ($status as $item)
                                 <option value={{ $item->code_cd }}> {{ $item->code_nm }}</option>
@@ -37,14 +37,13 @@
                             OPD
                         </div>
                     </div>
-                    <div class="col-md-9">
-                        <select class="form-control" wire:model="pilihOpd">
+                    <div class="col-md-9" wire:ignore>
+                        <select class="form-control opd" wire:model.defer="pilihOpd">
                             <option value="">Pilih OPD</option>
-                            @foreach ($listUrusan??[] as $item)
-                            <option value={{ $item->id }}> {{ $item->nama }}</option>
+                            @foreach ($listOpd??[] as $item)
+                            <option> {{ $item->opd??"" }}</option>
                         @endforeach
                         </select>
-                        {{ $listOpdTai??[] }}
                     </div>
                 </div>
                 <div class="col-md-4 row mb-3">
@@ -54,7 +53,7 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <select name=""  class="form-control" wire:model="pilihUrusan">
+                        <select name=""  class="form-control urusan" wire:model.defer="pilihUrusan">
                             <option value="">Pilih Status</option>
                             @foreach ($listUrusan??[] as $item)
                                 <option value={{ $item->id }}> {{ $item->nama }}</option>
@@ -97,14 +96,16 @@
     <div class="card">
         <div class="card-body">
           <div class="d-flex align-items-center">
-           
+
           </div>
+         
           <table class="table">
             <thead><tr>
                 <td>Kode Tiket</td>
                 <td>Tanggal Masuk</td>
                 <td>Subject</td>
                 <td>Status</td>
+                <td >Urusan</td>
                 <td>Pertanyaan</td>
                 <td>Penanya</td>
                 <td>Jawaban</td>
@@ -117,6 +118,14 @@
                         <td>{{ $item->created_at }}</td>
                         <td> {{ $item->subject }} </td>
                         <td> {{ $item->status->code_nm??"" }} </td>
+                        <td>  <ul>
+                            @foreach ($item->urusan as $urus )
+                           
+                                <li>{{ $urus->nama??"" }}</li>
+                            
+                            @endforeach
+                            </ul>
+                        </td>
                         <td> {!! $item->pertanyaan !!} </td>
                         <td> {{ $item->penanya->opd??"-" }}</td>
                         <td>{!! $item->jawaban !!}</td>
@@ -129,3 +138,19 @@
       </div>
     </main>
 </div>
+
+@push('js')
+    <script>
+        $(document).ready(function() {
+            $('.opd').select2();
+            $('.urusan').select2();
+
+            $(document).on('change','.opd',function(){
+                 @this.set('pilihOpd', $(this).val())
+             });
+            $(document).on('change','.urusan',function(){
+                 @this.set('pilihUrusan', $(this).val())
+             });
+        });
+    </script>
+@endpush
