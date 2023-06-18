@@ -11,6 +11,8 @@ use App\Http\Livewire\Pages\Urusan\UrusanPage;
 use App\Http\Livewire\Pages\User\UserPage;
 use App\Http\Livewire\Pages\User\DaftarUser;
 use App\Http\Livewire\Pages\Laporan\LaporanKonsultasi;
+use App\Http\Livewire\Pages\Regulasi\DaftarRegulasi;
+use App\Http\Livewire\Pages\Regulasi\PageRegulasi;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,4 +56,6 @@ Route::middleware([
     Route::get('konsultasi-urusan-irban', [KonsultasiController::class, 'urusanIrban'])->name('urusanIrban');
     Route::get('/log-konsultasi/{id}', [KonsultasiController::class, 'log'])->name('log');
     Route::get('laporan/konsultasi', LaporanKonsultasi::class)->name('laporan.konsultasi');
+    Route::get('regulasi/{id?}', PageRegulasi::class)->name('regulasi');
+    Route::get('regulasi-index', DaftarRegulasi::class)->name('regulasi.index');
 });
