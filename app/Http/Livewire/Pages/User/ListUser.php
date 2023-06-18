@@ -13,7 +13,7 @@ class ListUser extends DataTableComponent
      */
     public $delete_id;
     protected $listeners = ['deleteConfirmed' => 'rowsDeleted'];
-
+    protected $index = 0;
     protected $model = User::class;
 
     public function configure(): void
@@ -36,6 +36,7 @@ class ListUser extends DataTableComponent
     public function columns(): array
     {
         return [
+            Column::make("No", "id")->format(fn() => ++$this->index + ($this->page - 1) * $this->perPage),
             Column::make("Nama", "name")
                 ->sortable(),
             Column::make("Email", "email")

@@ -22,7 +22,7 @@
                             Status
                         </div>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-9 col-sm-12">
                         <select name="" wire:ignore  class="form-control" wire:model="pilihStatus">
                             <option value="">Pilih Status</option>
                             @foreach ($status as $item)
@@ -31,7 +31,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4 row mb-3">
+                <div class="col-md-4 col-sm-12 row mb-3">
                     <div class="col-md-3">
                         <div class="col-form-label">
                             OPD
@@ -52,9 +52,9 @@
                             Urusan
                         </div>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-9 col-sm-12">
                         <select name=""  class="form-control urusan" wire:model.defer="pilihUrusan">
-                            <option value="">Pilih Status</option>
+                            <option value="">Pilih Urusan</option>
                             @foreach ($listUrusan??[] as $item)
                                 <option value={{ $item->id }}> {{ $item->nama }}</option>
                             @endforeach
@@ -68,7 +68,7 @@
                             Tanggal Mulai
                         </div>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-9 col-sm-12">
                         <input type="date" class="form-control" wire:model='tanggalStart'>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                             Tanggal Sampai
                         </div>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-9 col-sm-12">
                         <input type="date" class="form-control" wire:model="tanggalEnd">
                     </div>
                 </div>
@@ -98,8 +98,8 @@
           <div class="d-flex align-items-center">
 
           </div>
-         
-          <table class="table">
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered" style="width:100%">
             <thead><tr>
                 <td>Kode Tiket</td>
                 <td>Tanggal Masuk</td>
@@ -134,6 +134,7 @@
             </tbody>
          </table>
          {{ $items->links() }}
+          </div>
         </div>
       </div>
     </main>
