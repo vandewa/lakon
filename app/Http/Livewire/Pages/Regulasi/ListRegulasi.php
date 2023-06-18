@@ -39,16 +39,24 @@ class ListRegulasi extends DataTableComponent
                     ->sortable(),
                 Column::make("Urusan", "urusannya.nama")
                     ->sortable(),
-                Column::make('Link', 'link')
-                    ->sortable(),
+                    Column::make('Link', 'link')
+                    ->format(
+                        function ($value, $row, Column $column) {
+                            return '
+                                <div class="gap-3 table-actions d-flex align-items-center fs-6">
+                                <a href="' . $row->link . '" class="text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat" type="button" target="_blank"><i class="bi bi-eye-fill"></i>
+                                </a>
+                                </div>
+                            ';
+                        }
+                    )
+                    ->html(),
                 Column::make('Action', 'id')
                     ->format(
                         function ($value, $row, Column $column) {
                             return '
                                 <div class="gap-3 table-actions d-flex align-items-center fs-6">
                                 <a href="' . route('regulasi', $row->id) . '" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit" type="button"><i class="bi bi-pencil-fill"></i>
-                                </a>
-                                <a href="' . $row->link . '" class="text-info" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat" type="button" target="_blank"><i class="bi bi-eye-fill"></i>
                                 </a>
                                 <a href="javascript:;" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete" wire:click.prevent="hapus(' . $row->id . ')" type="button"><i class="bi bi-trash-fill"></i></a>
                                 </div>
