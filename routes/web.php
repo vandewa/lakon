@@ -35,6 +35,7 @@ Route::get('docs', function () {
     return File::get(public_path() . '/documentation.html');
 });
 
+Route::group(['middleware' => ['role:admin']], function () {
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -54,4 +55,5 @@ Route::middleware([
     Route::get('konsultasi-urusan-irban', [KonsultasiController::class, 'urusanIrban'])->name('urusanIrban');
     Route::get('/log-konsultasi/{id}', [KonsultasiController::class, 'log'])->name('log');
     Route::get('laporan/konsultasi', LaporanKonsultasi::class)->name('laporan.konsultasi');
+});
 });
