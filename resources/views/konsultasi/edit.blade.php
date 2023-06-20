@@ -3,13 +3,13 @@
 <main class="page-content">
     <div class="row">
         @if(auth()->user()->hasRole(['irban', 'sekretaris', 'inspektur'])) 
-        <div class="col-xl-12 mx-auto">
+        <div class="mx-auto col-xl-12">
         @else
-        <div class="col-xl-6 mx-auto">
+        <div class="mx-auto col-xl-6">
         @endif
             <div class="card">
                 <div class="card-body">
-                    <div class="border p-3 rounded">
+                    <div class="p-3 border rounded">
                     <h6 class="mb-0 text-uppercase">Edit Form Konsultasi</h6>
                     <hr/>
                         {{Form::model($data, ['route' => ['konsultasi.update', $data->id],'method' => 'put','files' => true])}}
@@ -32,3 +32,7 @@
     </div>
 </main>
 @endsection
+
+@push('js')
+  <script src="{{ asset('snacked/ltr/assets/js/form-select2.js')}}"></script>
+@endpush

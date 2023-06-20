@@ -20,8 +20,7 @@
                 <div class="menu-title">Dashboard</div>
             </a>
         </li>
-        <li
-            class="
+        <li class="
     {{ Request::segment(1) == 'konsultasi' ? 'mm-active' : '' }}
     {{ Request::segment(1) == 'log-konsultasi' ? 'mm-active' : '' }}
     ">
@@ -29,6 +28,15 @@
                 <div class="parent-icon"><i class="bx bx-message-square-dots"></i>
                 </div>
                 <div class="menu-title">Konsultasi</div>
+            </a>
+        </li>
+        <li class="
+    {{ Request::segment(1) == 'regulasi' ? 'mm-active' : '' }}
+    ">
+            <a href="{{ route('regulasi.index') }}">
+                <div class="parent-icon"><i class="lni lni-bookmark"></i>
+                </div>
+                <div class="menu-title">Regulasi</div>
             </a>
         </li>
 
@@ -63,7 +71,7 @@
     {{ Request::segment(1) == 'laporan' ? 'mm-active' : '' }}
     ">
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="lni lni-archive"></i>
+                    <div class="parent-icon"><i class="lni lni-book"></i>
                     </div>
                     <div class="menu-title">Laporan</div>
                 </a>

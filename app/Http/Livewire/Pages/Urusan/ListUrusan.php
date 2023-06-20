@@ -11,6 +11,8 @@ class ListUrusan extends DataTableComponent
     public $delete_id;
     protected $listeners = ['deleteConfirmed' => 'rowsDeleted'];
     protected $model = Urusan::class;
+    protected $index = 0;
+
 
     public function configure(): void
     {
@@ -32,8 +34,7 @@ class ListUrusan extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make("Id", "id")
-                ->sortable(),
+            Column::make("No", "id")->format(fn() => ++$this->index + ($this->page - 1) * $this->perPage),
             Column::make("Nama", "nama")
                 ->sortable(),
             Column::make("Irban", "irbannya.nama")

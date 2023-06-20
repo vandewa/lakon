@@ -11,6 +11,8 @@ use App\Http\Livewire\Pages\Urusan\UrusanPage;
 use App\Http\Livewire\Pages\User\UserPage;
 use App\Http\Livewire\Pages\User\DaftarUser;
 use App\Http\Livewire\Pages\Laporan\LaporanKonsultasi;
+use App\Http\Livewire\Pages\Regulasi\DaftarRegulasi;
+use App\Http\Livewire\Pages\Regulasi\PageRegulasi;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +37,6 @@ Route::get('docs', function () {
     return File::get(public_path() . '/documentation.html');
 });
 
-Route::group(['middleware' => ['role:admin']], function () {
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -44,16 +45,17 @@ Route::middleware([
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/logout', [DashboardController::class, 'logout'])->name('logout');
     Route::post('/ganti-password', [DashboardController::class, 'gantiPassword'])->name('ganti.password');
-    Route::get('user/{id?}', UserPage::class)->name('user');
-    Route::get('user-index', DaftarUser::class)->name('user.index');
-    Route::get('irban/{id?}', IrbanPage::class)->name('irban');
-    Route::get('irban-index', DaftarIrban::class)->name('irban.index');
-    Route::get('urusan/{id?}', UrusanPage::class)->name('urusan');
-    Route::get('urusan-index', DaftarUrusan::class)->name('urusan.index');
+    Route::get('user/{id?}', UserPage::class)->name('user')->middleware('role:admin');
+    Route::get('user-index', DaftarUser::class)->name('user.index')->middleware('role:admin');
+    Route::get('irban/{id?}', IrbanPage::class)->name('irban')->middleware('role:admin');
+    Route::get('irban-index', DaftarIrban::class)->name('irban.index')->middleware('role:admin');
+    Route::get('urusan/{id?}', UrusanPage::class)->name('urusan')->middleware('role:admin');
+    Route::get('urusan-index', DaftarUrusan::class)->name('urusan.index')->middleware('role:admin');
     Route::resource('konsultasi', KonsultasiController::class);
     Route::post('/konsultasi/create/upload-image', [KonsultasiController::class, 'uploadImage'])->name('ckeditor.upload');
     Route::get('konsultasi-urusan-irban', [KonsultasiController::class, 'urusanIrban'])->name('urusanIrban');
     Route::get('/log-konsultasi/{id}', [KonsultasiController::class, 'log'])->name('log');
-    Route::get('laporan/konsultasi', LaporanKonsultasi::class)->name('laporan.konsultasi');
-});
+    Route::get('laporan/konsultasi', LaporanKonsultasi::class)->name('laporan.konsultasi')->middleware('role:admin');
+    Route::get('regulasi/{id?}', PageRegulasi::class)->name('regulasi');
+    Route::get('regulasi-index', DaftarRegulasi::class)->name('regulasi.index');
 });
