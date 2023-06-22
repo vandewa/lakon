@@ -35,8 +35,10 @@ class ListIrban extends DataTableComponent
         return [
             Column::make("No", "id")->format(fn() => ++$this->index + ($this->page - 1) * $this->perPage),
             Column::make("Nama", "nama")
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
             Column::make("Bidang", "bidang")
+                ->searchable()
                 ->sortable(),
             Column::make('Action', 'id')
                 ->format(

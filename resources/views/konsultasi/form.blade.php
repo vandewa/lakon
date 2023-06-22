@@ -20,6 +20,7 @@
         <div class="mb-2 col-12">
             <label class="form-label">Lampiran</label>
             <input name="path_file_pertanyaan" type="file" accept="application/pdf" class="form-control">
+            <small style="color:red;">(*format file pdf maksimal 2Mb.)</small>
             @error('path_file_pertanyaan')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -68,4 +69,8 @@
             console.error( error );
         } );
   </script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+
+    {!! JsValidator::formRequest('App\Http\Requests\KonsultasiStoreValidation') !!}
 @endpush

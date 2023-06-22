@@ -38,9 +38,11 @@ class ListUser extends DataTableComponent
         return [
             Column::make("No", "id")->format(fn() => ++$this->index + ($this->page - 1) * $this->perPage),
             Column::make("Nama", "name")
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
             Column::make("Email", "email")
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
             Column::make('Role', 'id')
                 ->format(
                     function ($value, $row, Column $column) {

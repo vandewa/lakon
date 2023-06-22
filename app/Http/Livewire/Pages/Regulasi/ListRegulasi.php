@@ -36,9 +36,11 @@ class ListRegulasi extends DataTableComponent
             return [
                 Column::make("No", "id")->format(fn() => ++$this->index + ($this->page - 1) * $this->perPage),
                 Column::make("Perihal/Keterangan", "perihal")
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
                 Column::make("Urusan", "urusannya.nama")
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
                     Column::make('Link', 'link')
                     ->format(
                         function ($value, $row, Column $column) {

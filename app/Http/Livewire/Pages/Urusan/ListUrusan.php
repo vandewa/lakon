@@ -36,9 +36,11 @@ class ListUrusan extends DataTableComponent
         return [
             Column::make("No", "id")->format(fn() => ++$this->index + ($this->page - 1) * $this->perPage),
             Column::make("Nama", "nama")
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
             Column::make("Irban", "irbannya.nama")
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
             Column::make('Action', 'id')
                 ->format(
                     function ($value, $row, Column $column) {
