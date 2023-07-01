@@ -10,7 +10,7 @@ use App\Models\Urusan;
 use App\Models\TiketUrusan;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-use App\Http\Controllers\KonsultasiController;
+use App\Http\Requests\KonsultasiStoreValidation;
 
 class KonsultasiController extends Controller
 {
@@ -175,7 +175,7 @@ class KonsultasiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(KonsultasiController $request)
+    public function store(KonsultasiStoreValidation $request)
     {
         if ($request->hasFile('path_file_pertanyaan')) {
             $a = $request->file('path_file_pertanyaan');
@@ -232,7 +232,7 @@ class KonsultasiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(KonsultasiStoreValidation $request, string $id)
     {
         //opd
         if ($request->hasFile('path_file_pertanyaan')) {

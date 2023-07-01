@@ -24,7 +24,7 @@ class KonsultasiStoreValidation extends FormRequest
         return [
             'subject' => 'required',
             'pertanyaan' => 'required',
-            'path_file_pertanyaan' => 'max:2048',
+            'path_file_pertanyaan' => 'mimes:pdf|max:2048',
         ];
     }
 }
