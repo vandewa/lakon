@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Tiket;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 
 class DashboardController extends Controller
@@ -22,9 +22,67 @@ class DashboardController extends Controller
             ->leftJoin('tikets', 'tikets.tiket_st', 'com_codes.code_cd')
             ->select(DB::raw("code_nm as nama, count(tiket_st) as jumlah"))
             ->where('code_group', 'tiket_st')
-            ->groupBy('code_nm')->get();
+            ->groupBy('code_nm')
+            ->get();
+
+        $data['tiket2'] = DB::table('com_codes')
+            ->leftJoin('tikets', 'tikets.tiket_st', 'com_codes.code_cd')
+            ->where('creator_id', auth()->user()->id)
+            ->select(DB::raw("code_nm as nama, count(tiket_st) as jumlah"))
+            ->where('code_group', 'tiket_st')
+            ->groupBy('code_nm')
+            ->get();
+
+        $data['tiket_irban1'] = DB::table('com_codes')
+            ->leftJoin('tikets', 'tikets.tiket_st', 'com_codes.code_cd')
+            ->where('irban_id', 1)
+            ->select(DB::raw("code_nm as nama, count(tiket_st) as jumlah"))
+            ->where('code_group', 'tiket_st')
+            ->groupBy('code_nm')
+            ->get();
+
+        $data['tiket_irban2'] = DB::table('com_codes')
+            ->leftJoin('tikets', 'tikets.tiket_st', 'com_codes.code_cd')
+            ->where('irban_id', 2)
+            ->select(DB::raw("code_nm as nama, count(tiket_st) as jumlah"))
+            ->where('code_group', 'tiket_st')
+            ->groupBy('code_nm')
+            ->get();
+
+        $data['tiket_irban3'] = DB::table('com_codes')
+            ->leftJoin('tikets', 'tikets.tiket_st', 'com_codes.code_cd')
+            ->where('irban_id', 3)
+            ->select(DB::raw("code_nm as nama, count(tiket_st) as jumlah"))
+            ->where('code_group', 'tiket_st')
+            ->groupBy('code_nm')
+            ->get();
+
+        $data['tiket_irban4'] = DB::table('com_codes')
+            ->leftJoin('tikets', 'tikets.tiket_st', 'com_codes.code_cd')
+            ->where('irban_id', 4)
+            ->select(DB::raw("code_nm as nama, count(tiket_st) as jumlah"))
+            ->where('code_group', 'tiket_st')
+            ->groupBy('code_nm')
+            ->get();
+
+        $data['tiket_irban5'] = DB::table('com_codes')
+            ->leftJoin('tikets', 'tikets.tiket_st', 'com_codes.code_cd')
+            ->where('irban_id', 5)
+            ->select(DB::raw("code_nm as nama, count(tiket_st) as jumlah"))
+            ->where('code_group', 'tiket_st')
+            ->groupBy('code_nm')
+            ->get();
 
         $data['total'] = Tiket::count();
+
+        $data['total2'] = Tiket::where('creator_id', auth()->user()->id)->count();
+
+        $data['total_irban1'] = Tiket::where('irban_id', 1)->count();
+
+        $data['total_irban2'] = Tiket::where('irban_id', 2)->count();
+        $data['total_irban3'] = Tiket::where('irban_id', 3)->count();
+        $data['total_irban4'] = Tiket::where('irban_id', 4)->count();
+        $data['total_irban5'] = Tiket::where('irban_id', 5)->count();
 
         $data['icon'] = ['bx-envelope-open', 'bx-user', 'bx-user-pin', 'bx-user-circle', 'bx-envelope'];
 
