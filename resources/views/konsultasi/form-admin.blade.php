@@ -98,4 +98,5 @@
        });
    });
 </script>  
+{!! JsValidator::formRequest('App\Http\Requests\UpdateRoleAdmin') !!}
 @endpush

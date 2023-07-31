@@ -232,7 +232,7 @@ class KonsultasiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(KonsultasiStoreValidation $request, string $id)
+    public function update(Request $request, string $id)
     {
         //opd
         if ($request->hasFile('path_file_pertanyaan')) {

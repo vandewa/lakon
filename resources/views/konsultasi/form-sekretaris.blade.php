@@ -141,4 +141,5 @@
        });
    });
 </script>  
+{!! JsValidator::formRequest('App\Http\Requests\UpdateRoleSekretaris') !!}
 @endpush
