@@ -22,9 +22,9 @@ class KonsultasiStoreValidation extends FormRequest
     public function rules(): array
     {
         return [
-            'subject' => 'required',
+            // 'subject' => 'required',
             // 'pertanyaan' => 'required_if:pertanyaan,==,null',
-            'path_file_pertanyaan' => 'mimes:pdf|max:2048',
+            // 'path_file_pertanyaan' => 'mimes:pdf|max:2048',
         ];
     }
 }
