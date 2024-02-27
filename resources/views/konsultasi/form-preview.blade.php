@@ -63,7 +63,7 @@
             
         @else
             <label class="form-label">Lampiran</label>
-            <object data="{{ route('helper.show-picture', ['path' => $data->path_file_jawaban]) }}" type="application/pdf" width="100%" height="500"
+            <object data="{{ route('helper.show-picture', ['path' => $data->path_file_jawaban]) }}" type="application/pdf" width="100%" height="500">
         @endif
     </div>
 
