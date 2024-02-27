@@ -135,4 +135,5 @@
        });
    });
 </script>  
+{!! JsValidator::formRequest('App\Http\Requests\UpdateRoleIrban') !!}
 @endpush

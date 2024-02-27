@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class KonsultasiStoreValidation extends FormRequest
+class UpdateRoleSekretaris extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,8 @@ class KonsultasiStoreValidation extends FormRequest
     public function rules(): array
     {
         return [
-            'subject' => 'required',
-            'pertanyaan' => 'required_if:pertanyaan,==,null',
-            'path_file_pertanyaan' => 'mimes:pdf|max:2048',
+            'tiket_status_st' => 'required',
+            'keterangan' => 'required',
         ];
     }
 }

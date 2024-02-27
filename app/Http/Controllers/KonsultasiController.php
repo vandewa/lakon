@@ -95,11 +95,11 @@ class KonsultasiController extends Controller
                         }
                     } elseif (auth()->user()->hasRole('admin')) {
                         if ($row->tiket_st == 'TIKET_ST_01' || $row->tiket_st == 'TIKET_ST_02') {
-                            return $edit;
+                            return $editDanDelete;
                         } elseif ($row->tiket_st == 'TIKET_ST_05') {
                             return $previewDanLog;
                         } else {
-                            return;
+                            return $editDanDelete;
                         }
                     } elseif (auth()->user()->hasRole('irban')) {
                         if ($row->tiket_st == 'TIKET_ST_02') {
@@ -229,7 +229,7 @@ class KonsultasiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(KonsultasiStoreValidation $request, string $id)
+    public function update(Request $request, string $id)
     {
         //opd
         if ($request->hasFile('path_file_pertanyaan')) {
