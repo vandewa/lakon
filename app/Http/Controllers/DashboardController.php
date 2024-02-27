@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ComCode;
 use App\Models\User;
+use App\Models\Tiket;
+use App\Models\ComCode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Tiket;
-use DB;
 
 
 class DashboardController extends Controller

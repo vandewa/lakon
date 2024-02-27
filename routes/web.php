@@ -1,18 +1,19 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HelperController;
+use App\Http\Livewire\Pages\User\UserPage;
+use App\Http\Livewire\Pages\Irban\IrbanPage;
+use App\Http\Livewire\Pages\User\DaftarUser;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KonsultasiController;
-use App\Http\Livewire\Pages\Irban\IrbanPage;
 use App\Http\Livewire\Pages\Irban\DaftarIrban;
-use App\Http\Livewire\Pages\Urusan\DaftarUrusan;
 use App\Http\Livewire\Pages\Urusan\UrusanPage;
-use App\Http\Livewire\Pages\User\UserPage;
-use App\Http\Livewire\Pages\User\DaftarUser;
-use App\Http\Livewire\Pages\Laporan\LaporanKonsultasi;
-use App\Http\Livewire\Pages\Regulasi\DaftarRegulasi;
+use App\Http\Livewire\Pages\Urusan\DaftarUrusan;
 use App\Http\Livewire\Pages\Regulasi\PageRegulasi;
+use App\Http\Livewire\Pages\Regulasi\DaftarRegulasi;
+use App\Http\Livewire\Pages\Laporan\LaporanKonsultasi;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,8 @@ Route::get('/login', function () {
 Route::get('docs', function () {
     return File::get(public_path() . '/documentation.html');
 });
+
+Route::get('show-picture', [HelperController::class, 'showPicture'])->name('helper.show-picture');
 
 Route::middleware([
     'auth:sanctum',

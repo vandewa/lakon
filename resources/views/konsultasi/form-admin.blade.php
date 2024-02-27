@@ -25,7 +25,7 @@
                 alt="preview image" style="max-height: 250px;">
         @else
             <label class="form-label">Lampiran</label>
-            <object data="{{ asset($data->preview_image) }}" type="application/pdf" width="100%" height="500"
+            <object data="" type="application/pdf" width="100%" height="500"
                 style="border: solid 1px #ccc;"></object>
         @endif
     </div>

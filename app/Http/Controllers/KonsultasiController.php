@@ -177,16 +177,13 @@ class KonsultasiController extends Controller
      */
     public function store(KonsultasiStoreValidation $request)
     {
-        if ($request->hasFile('path_file_pertanyaan')) {
-            $a = $request->file('path_file_pertanyaan');
-            $prefix = date('Ymdhis');
-            $extension = $a->extension();
-            $filename = $prefix . '.' . $extension;
 
+        if ($request->hasFile('path_file_pertanyaan')) {
             $path = $request->file('path_file_pertanyaan')->storeAs(
-                'public',
-                $filename
+                'lakon/public/',
+                date('Ymdhis') . '.' . $request->file('path_file_pertanyaan')->extension()
             );
+
         } else {
             $path = null;
         }
@@ -236,14 +233,9 @@ class KonsultasiController extends Controller
     {
         //opd
         if ($request->hasFile('path_file_pertanyaan')) {
-            $a = $request->file('path_file_pertanyaan');
-            $prefix = date('Ymdhis');
-            $extension = $a->extension();
-            $filename = $prefix . '.' . $extension;
-
             $path = $request->file('path_file_pertanyaan')->storeAs(
-                'public',
-                $filename
+                'lakon/public/',
+                date('Ymdhis') . '.' . $request->file('path_file_pertanyaan')->extension()
             );
         } else {
             $path = Tiket::where('id', $id)->first()->path_file_pertanyaan;
@@ -277,15 +269,11 @@ class KonsultasiController extends Controller
 
         //irban
         if ($request->hasFile('path_file_jawaban')) {
-            $a = $request->file('path_file_jawaban');
-            $prefix = date('Ymdhis');
-            $extension = $a->extension();
-            $filename = $prefix . '.' . $extension;
-
-            $path_jawaban = $request->file('path_file_jawaban')->storeAs(
-                'public',
-                $filename
+            $path = $request->file('path_file_jawaban')->storeAs(
+                'lakon/public/',
+                date('Ymdhis') . '.' . $request->file('path_file_jawaban')->extension()
             );
+
         } else {
             $path_jawaban = Tiket::where('id', $id)->first()->path_file_jawaban;
         }

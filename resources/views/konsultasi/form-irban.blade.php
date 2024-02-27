@@ -20,7 +20,7 @@
                 alt="preview image" style="max-height: 250px;">
         @else
             <label class="form-label">Lampiran</label>
-            <object data="{{ asset($data->preview_image) }}" type="application/pdf" width="100%" height="500"
+            <object data="{{ route('helper.show-picture', ['path' => $data->path_file_pertanyaan]) }}" type="application/pdf" width="100%" height="500"
                 style="border: solid 1px #ccc;"></object>
         @endif
     </div>
@@ -66,7 +66,7 @@
         @enderror
         @else
             <label class="form-label">Lampiran</label>
-            <object data="{{ asset($data->preview_image) }}" type="application/pdf" width="100%" height="500"
+            <object data="{{ route('helper.show-picture', ['path' => $data->path_file_jawaban]) }}" type="application/pdf" width="100%" height="500"
                 style="border: solid 1px #ccc;"></object>
                 <label class="form-label">Ganti Lampiran</label>
             <input name="path_file_jawaban" type="file" accept="application/pdf" class="form-control">
