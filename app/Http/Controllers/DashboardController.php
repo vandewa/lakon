@@ -9,12 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-<<<<<<< HEAD
-=======
-use App\Models\Tiket;
-use Illuminate\Support\Facades\DB;
->>>>>>> 9ff9737f9198916f9e7cea62b9e466788faabcab
-
 
 class DashboardController extends Controller
 {
